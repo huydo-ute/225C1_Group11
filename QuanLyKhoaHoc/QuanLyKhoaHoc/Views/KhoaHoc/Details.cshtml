@@ -1,0 +1,34 @@
+﻿@model QuanLyKhoaHoc.Models.KhoaHoc
+@using QuanLyKhoaHoc.Extensions
+@using QuanLyKhoaHoc.Helpers
+
+<h2>Chi tiết khóa học</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Tên khóa học</dt>
+    <dd class="col-sm-9">@Model.strTenKhoaHoc</dd>
+
+    <dt class="col-sm-3">Mô tả</dt>
+    <dd class="col-sm-9">@Model.strMoTa</dd>
+
+    <dt class="col-sm-3">Giảng viên</dt>
+    <dd class="col-sm-9">@Model.GiangVien?.strHoTen</dd>
+
+    <dt class="col-sm-3">Học phí</dt>
+    <dd class="col-sm-9">@Model.HocPhi.ToHocPhiVN()</dd>
+
+    <dt class="col-sm-3">Số buổi học</dt>
+    <dd class="col-sm-9">@Model.SoBuoiHoc</dd>
+
+    <dt class="col-sm-3">Ngày bắt đầu</dt>
+    <dd class="col-sm-9">@Model.dtNgayBatDau.ToNgayVN()</dd>
+
+    <dt class="col-sm-3">Ngày kết thúc</dt>
+    <dd class="col-sm-9">@Model.dtNgayKetThuc.ToNgayVN()</dd>
+
+    <dt class="col-sm-3">Trạng thái</dt>
+    <dd class="col-sm-9">@Model.TrangThai.LayTenHienThi()</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>

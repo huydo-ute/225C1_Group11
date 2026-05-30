@@ -1,0 +1,23 @@
+﻿@model QuanLyKhoaHoc.Models.KhoaHoc
+@using QuanLyKhoaHoc.Extensions
+
+<h2>Xóa khóa học</h2>
+
+<h4>Bạn có chắc chắn muốn xóa?</h4>
+
+<dl class="row">
+    <dt class="col-sm-3">Tên khóa học</dt>
+    <dd class="col-sm-9">@Model.strTenKhoaHoc</dd>
+
+    <dt class="col-sm-3">Giảng viên</dt>
+    <dd class="col-sm-9">@Model.GiangVien?.strHoTen</dd>
+
+    <dt class="col-sm-3">Học phí</dt>
+    <dd class="col-sm-9">@Model.HocPhi.ToHocPhiVN()</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

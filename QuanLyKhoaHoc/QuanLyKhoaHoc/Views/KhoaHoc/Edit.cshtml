@@ -1,0 +1,76 @@
+﻿@model QuanLyKhoaHoc.Models.KhoaHoc
+
+@{
+    ViewData["Title"] = "Sửa khóa học";
+}
+
+<h2>Sửa khóa học</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="strTenKhoaHoc" class="form-label"></label>
+        <input asp-for="strTenKhoaHoc" class="form-control" />
+        <span asp-validation-for="strTenKhoaHoc" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="strMoTa" class="form-label"></label>
+        <textarea asp-for="strMoTa" class="form-control"></textarea>
+        <span asp-validation-for="strMoTa" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TrangThai" class="form-label"></label>
+        <select asp-for="TrangThai"
+                asp-items="Html.GetEnumSelectList<QuanLyKhoaHoc.Enums.TrangThaiKhoaHoc>()"
+                class="form-control">
+        </select>
+        <span asp-validation-for="TrangThai" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HocPhi" class="form-label"></label>
+        <input asp-for="HocPhi" class="form-control" />
+        <span asp-validation-for="HocPhi" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SoBuoiHoc" class="form-label"></label>
+        <input asp-for="SoBuoiHoc" class="form-control" />
+        <span asp-validation-for="SoBuoiHoc" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="dtNgayBatDau" class="form-label"></label>
+        <input asp-for="dtNgayBatDau" type="date" class="form-control" />
+        <span asp-validation-for="dtNgayBatDau" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="dtNgayKetThuc" class="form-label"></label>
+        <input asp-for="dtNgayKetThuc" type="date" class="form-control" />
+        <span asp-validation-for="dtNgayKetThuc" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GiangVienId" class="form-label"></label>
+        <select asp-for="GiangVienId"
+                asp-items="ViewBag.GiangVienId"
+                class="form-control">
+        </select>
+        <span asp-validation-for="GiangVienId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-warning">Cập nhật</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
