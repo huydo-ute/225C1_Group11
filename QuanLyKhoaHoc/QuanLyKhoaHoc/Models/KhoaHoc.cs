@@ -1,4 +1,4 @@
-﻿using QuanLyKhoaHoc.Enums
+﻿using QuanLyKhoaHoc.Enums;
 namespace QuanLyKhoaHoc.Models
 {
     public class KhoaHoc
