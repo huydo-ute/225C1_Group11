@@ -1,8 +1,79 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm">
+    <div class="container-fluid py-4 text-center">
+        <h1 class="display-5 fw-bold">Hệ thống quản lý khóa học</h1>
+        <p class="fs-5">
+            Quản lý giảng viên, khóa học, học phí và theo dõi trạng thái đào tạo
+        </p>
+    </div>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 text-center">
+            <div class="card-body">
+                <h4 class="card-title">Quản lý giảng viên</h4>
+                <p class="card-text">
+                    Thêm, sửa, xóa và tìm kiếm thông tin giảng viên
+                </p>
+                <div class="d-grid gap-2">
+                    <a asp-controller="GiangVien" asp-action="Index" class="btn btn-primary">
+                        Danh sách giảng viên
+                    </a>
+                    <a asp-controller="GiangVien" asp-action="Create" class="btn btn-success">
+                        Thêm giảng viên
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 text-center">
+            <div class="card-body">
+                <h4 class="card-title">Quản lý khóa học</h4>
+                <p class="card-text">
+                    Quản lý khóa học, học phí, thời gian học và trạng thái
+                </p>
+                <div class="d-grid gap-2">
+                    <a asp-controller="KhoaHoc" asp-action="Index" class="btn btn-primary">
+                        Danh sách khóa học
+                    </a>
+                    <a asp-controller="KhoaHoc" asp-action="Create" class="btn btn-success">
+                        Thêm khóa học
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 text-center">
+            <div class="card-body">
+                <h4 class="card-title">Điều hướng nhanh</h4>
+                <p class="card-text">
+                    Truy cập nhanh các chức năng chính của hệ thống
+                </p>
+
+                <div class="list-group">
+                    <a asp-controller="Home" asp-action="Privacy" class="list-group-item list-group-item-action">
+                        Giới thiệu hệ thống
+                    </a>
+
+                    <a asp-controller="GiangVien" asp-action="Index" class="list-group-item list-group-item-action">
+                        Tra cứu giảng viên
+                    </a>
+
+                    <a asp-controller="KhoaHoc" asp-action="Index" class="list-group-item list-group-item-action">
+                        Tra cứu khóa học
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

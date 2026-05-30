@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QuanLyKhoaHoc.Data;
 using QuanLyKhoaHoc.Enums;
+using QuanLyKhoaHoc.Helpers;
 using QuanLyKhoaHoc.Models;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,9 +39,15 @@ namespace QuanLyKhoaHoc.Controllers
 
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentTrangThai"] = trangThai;
-            ViewData["TrangThaiList"] = new SelectList(
-                System.Enum.GetValues(typeof(TrangThaiKhoaHoc))
-            );
+            ViewBag.TrangThaiList = Enum.GetValues(typeof(TrangThaiKhoaHoc))
+                    .Cast<TrangThaiKhoaHoc>()
+                    .Select(t => new SelectListItem
+                    {
+                        Value = t.ToString(),
+                        Text = t.LayTenHienThi(),
+                        Selected = trangThai.HasValue && trangThai.Value == t
+                    })
+                .ToList();
 
             return View(await khoaHocs.ToListAsync());
         }
