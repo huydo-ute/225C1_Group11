@@ -1,0 +1,65 @@
+﻿@model QuanLyKhoaHoc.Models.GiangVien
+
+@{
+    ViewData["Title"] = "Chi tiết giảng viên";
+}
+
+<h2>Chi tiết giảng viên</h2>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Mã giảng viên</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+
+            <dt class="col-sm-3">Họ và tên</dt>
+            <dd class="col-sm-9">@Model.strHoTen</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.strEmail</dd>
+
+            <dt class="col-sm-3">Số điện thoại</dt>
+            <dd class="col-sm-9">@Model.strSoDienThoai</dd>
+
+            <dt class="col-sm-3">Chuyên môn</dt>
+            <dd class="col-sm-9">@Model.strChuyenMon</dd>
+
+            <dt class="col-sm-3">Số năm kinh nghiệm</dt>
+            <dd class="col-sm-9">@Model.SoNamKinhNghiem năm</dd>
+        </dl>
+    </div>
+</div>
+
+<h4 class="mt-4">Danh sách khóa học phụ trách</h4>
+
+@if (Model.lstKhoaHocs != null && Model.lstKhoaHocs.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Tên khóa học</th>
+                <th>Học phí</th>
+                <th>Số buổi học</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var khoaHoc in Model.lstKhoaHocs)
+            {
+                <tr>
+                    <td>@khoaHoc.strTenKhoaHoc</td>
+                    <td>@khoaHoc.HocPhi</td>
+                    <td>@khoaHoc.SoBuoiHoc</td>
+                    <td>@khoaHoc.TrangThai</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-muted">Giảng viên này chưa phụ trách khóa học nào.</p>
+}
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>
