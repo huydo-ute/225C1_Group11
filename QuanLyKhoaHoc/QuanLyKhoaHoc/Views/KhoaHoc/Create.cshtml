@@ -38,8 +38,9 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="dtNgayKetThuc"></label>
-        <input asp-for="dtNgayKetThuc" class="form-control" type="date" />
+        <label asp-for="dtNgayKetThuc" class="form-label"></label>
+        <input asp-for="dtNgayKetThuc" type="date" class="form-control" />
+        <span asp-validation-for="dtNgayKetThuc" class="text-danger"></span>
     </div>
 
     <div class="mb-3">

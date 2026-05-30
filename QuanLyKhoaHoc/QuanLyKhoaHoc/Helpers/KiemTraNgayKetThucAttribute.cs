@@ -6,6 +6,7 @@ namespace QuanLyKhoaHoc.Helpers
     public class KiemTraNgayKetThucAttribute : ValidationAttribute
     {
         private readonly string _tenThuocTinhNgayBatDau;
+
         public KiemTraNgayKetThucAttribute(string tenThuocTinhNgayBatDau)
         {
             _tenThuocTinhNgayBatDau = tenThuocTinhNgayBatDau;
@@ -17,17 +18,22 @@ namespace QuanLyKhoaHoc.Helpers
 
             if (propertyInfo == null)
             {
-                return new ValidationResult($"Không tìm thấy thuộc tính {_tenThuocTinhNgayBatDau} trong model.");
+                return new ValidationResult("Không tìm thấy thuộc tính ngày bắt đầu.");
             }
-            var giaTriNgayBatDau = propertyInfo.GetValue(validationContext.ObjectInstance, null);
 
-            if (value is DateTime ngayKetThuc && giaTriNgayBatDau is DateTime ngayBatDau)
+            var giaTriNgayBatDau = propertyInfo.GetValue(validationContext.ObjectInstance);
+
+            if (value is DateTime ngayKetThuc &&
+                giaTriNgayBatDau is DateTime ngayBatDau)
             {
-                if (ngayKetThuc <= ngayBatDau)
+                if (ngayBatDau >= ngayKetThuc)
                 {
-                    return new ValidationResult(ErrorMessage ?? "Ngày kết thúc phải lớn hơn ngày bắt đầu.");
+                    return new ValidationResult(
+                        "Ngày bắt đầu phải nhỏ hơn ngày kết thúc."
+                    );
                 }
             }
+
             return ValidationResult.Success;
         }
     }
