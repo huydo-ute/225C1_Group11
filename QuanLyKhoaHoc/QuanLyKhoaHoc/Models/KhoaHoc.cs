@@ -44,7 +44,7 @@ namespace QuanLyKhoaHoc.Models
         [Required(ErrorMessage = "Vui lòng chọn ngày kết thúc.")]
         [DataType(DataType.Date)]
         [Display(Name = "Ngày kết thúc")]
-        [KiemTraNgayKetThuc("dtNgayBatDau", ErrorMessage = "Ngày kết thúc phải diễn ra sau ngày bắt đầu!")]
+        [KiemTraNgayKetThuc("dtNgayBatDau")]
         public DateTime dtNgayKetThuc { get; set; }
 
         [Required(ErrorMessage = "Vui lòng chọn giảng viên.")]
