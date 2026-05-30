@@ -1,5 +1,52 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model QuanLyKhoaHoc.Models.KhoaHoc
+@using QuanLyKhoaHoc.Helpers
+
+<h2>Thêm khóa học</h2>
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="strTenKhoaHoc"></label>
+        <input asp-for="strTenKhoaHoc" class="form-control" />
+        <span asp-validation-for="strTenKhoaHoc" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="strMoTa"></label>
+        <textarea asp-for="strMoTa" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TrangThai"></label>
+        <select asp-for="TrangThai" asp-items="Html.GetEnumSelectList<QuanLyKhoaHoc.Enums.TrangThaiKhoaHoc>()" class="form-control"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="HocPhi"></label>
+        <input asp-for="HocPhi" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SoBuoiHoc"></label>
+        <input asp-for="SoBuoiHoc" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="dtNgayBatDau"></label>
+        <input asp-for="dtNgayBatDau" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="dtNgayKetThuc"></label>
+        <input asp-for="dtNgayKetThuc" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GiangVienId"></label>
+        <select asp-for="GiangVienId" asp-items="ViewBag.GiangVienId" class="form-control"></select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
