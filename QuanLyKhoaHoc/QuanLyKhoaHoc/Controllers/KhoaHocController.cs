@@ -73,17 +73,25 @@ namespace QuanLyKhoaHoc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("strTenKhoaHoc,strMoTa,TrangThai,HocPhi,SoBuoiHoc,dtNgayBatDau,dtNgayKetThuc,GiangVienId")] KhoaHoc khoaHoc)
+        public async Task<IActionResult> Create(KhoaHoc khoaHoc)
         {
-            if (ModelState.IsValid)
+            ModelState.Remove("GiangVien");
+
+            if (!ModelState.IsValid)
             {
-                _context.Add(khoaHoc);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+
+                ViewData["GiangVienId"] = new SelectList(_context.GiangViens, "Id", "strHoTen", khoaHoc.GiangVienId);
+                return View(khoaHoc);
             }
 
-            ViewData["GiangVienId"] = new SelectList(_context.GiangViens, "Id", "strHoTen", khoaHoc.GiangVienId);
-            return View(khoaHoc);
+            _context.KhoaHocs.Add(khoaHoc);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -102,6 +110,7 @@ namespace QuanLyKhoaHoc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,strTenKhoaHoc,strMoTa,TrangThai,HocPhi,SoBuoiHoc,dtNgayBatDau,dtNgayKetThuc,GiangVienId")] KhoaHoc khoaHoc)
         {
+            ModelState.Remove("GiangVien");
             if (id != khoaHoc.Id) return NotFound();
 
             if (ModelState.IsValid)
