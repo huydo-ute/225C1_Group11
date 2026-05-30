@@ -4,13 +4,13 @@
     {
         public int Id { get; set; }
 
-        public string HoTen { get; set; }
-        public string Email { get; set; }
-        public string SoDienThoai { get; set; }
+        public string strHoTen { get; set; }
+        public string strEmail { get; set; }
+        public string strSoDienThoai { get; set; }
 
-        public string ChuyenMon { get; set; }
+        public string strChuyenMon { get; set; }
         public int SoNamKinhNghiem { get; set; }
 
-        public ICollection<KhoaHoc> KhoaHocs { get; set; }
+        public virtual ICollection<KhoaHoc> lstKhoaHocs { get; set; } = new List<KhoaHoc>();
     }
 }
